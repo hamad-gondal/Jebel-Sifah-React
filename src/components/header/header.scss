@@ -1,0 +1,24 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  border-bottom: 1px solid #eaeaea;
+
+  .logo {
+    img {
+      width: 150px;
+    }
+  }
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    p {
+      margin-left: 5px;
+    }
+  }
+}

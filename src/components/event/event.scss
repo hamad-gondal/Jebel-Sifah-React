@@ -1,0 +1,78 @@
+.eventDetails {
+  background-color: white;
+  max-width: 50%;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  margin: 10px;
+  max-width: 430px;
+  border-radius: 40px;
+
+  .eventText {
+    margin-top: 10px;
+
+    .itemText {
+      margin-bottom: 5px;
+
+      .detailTitle {
+        margin: 0;
+        min-width: 100px;
+      }
+
+      .detailText {
+        margin: 0;
+        color: #898787;
+        min-width: 130px;
+      }
+    }
+
+    .descriptionText {
+      margin: 0;
+      color: #898787;
+    }
+  }
+
+  .actionButtons {
+    display: flex;
+    flex-direction: row;
+
+    .btn {
+      border-color: #e8903e;
+      border-style: solid;
+      display: block;
+      width: 150px;
+      height: 40px;
+      padding: 8px 0;
+      margin: 10px auto;
+      background: #e8903e;
+      border-radius: 4px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #de5928;
+      border-color: #de5928;
+    }
+  }
+
+  .eventImage {
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      max-height: 240px;
+    }
+  }
+
+  &:hover {
+    box-shadow: 2px 2px 4px #00000057;
+  }
+}
+
+.itemText {
+  display: flex;
+}
