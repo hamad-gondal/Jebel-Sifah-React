@@ -1,12 +1,11 @@
 .eventDetails {
   background-color: white;
-  max-width: 50%;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
   margin: 10px;
-  max-width: 430px;
+  width: 430px;
   border-radius: 40px;
 
   .eventText {
@@ -30,6 +29,7 @@
     .descriptionText {
       margin: 0;
       color: #898787;
+      // min-height: 132px;
     }
   }
 
