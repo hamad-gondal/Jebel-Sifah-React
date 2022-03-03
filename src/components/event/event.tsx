@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import './event.scss';
 
 function Event(eventList: any) {
@@ -7,7 +8,11 @@ function Event(eventList: any) {
             {eventList.eventList.map((item: any) => (
                 <div className='eventDetails' key={item.id}>
                     <div className='eventImage'>
-                        <img src={item?.image} alt='event' />
+                        {
+                            <Suspense fallback={null}>
+                                <img src={item?.image} alt='event' />
+                            </Suspense>
+                        }
                     </div>
                     <div className='eventText'>
                         <div className='itemText'>
