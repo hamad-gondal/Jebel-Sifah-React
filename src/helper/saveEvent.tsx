@@ -49,7 +49,6 @@ export const saveEvent = async (event: any) => {
                         description: event.target.description.value,
                         image: url,
                         id: docId,
-                        featured: event.target.featured.checked,
                     };
                     setDoc(doc(db, eventLocation, docId), eventDetails);
                     console.log("Data Saved Successfully");
@@ -61,7 +60,6 @@ export const saveEvent = async (event: any) => {
                     event.target.phone.value = "";
                     event.target.description.value = "";
                     event.target.imageToUpload.value = "";
-                    event.target.featured.checked = false;
                 })
                 .catch((error) => {
                     console.log("Error in uploading image: ", error);
@@ -70,10 +68,10 @@ export const saveEvent = async (event: any) => {
     }
 };
 
-export const updateEvent = async (event: any, id: string) => {
+export const updateEvent = async (event: any) => {
     event.preventDefault();
     const firestore = firebase.firestore();
-    const file = event.target.imageToUpload.files[0];
+    const file = event.target.imageToUpload?.files[0];
     const imageUrl = event.target.imageToUpload.dataset.src;
     const eventId = event.target.imageToUpload.dataset.id;
     const eventLocation = event.target.location.value === "Jebel Sifah" ? "jebelSifah" : "havanaSalalah";
@@ -115,7 +113,6 @@ export const updateEvent = async (event: any, id: string) => {
                         description: event.target.description.value,
                         image: url,
                         id: eventId,
-                        featured: event.target.featured.checked,
                     };
                     firestore.collection(eventLocation)
                         .doc(eventId)
@@ -129,7 +126,6 @@ export const updateEvent = async (event: any, id: string) => {
                     event.target.phone.value = "";
                     event.target.description.value = "";
                     event.target.imageToUpload.value = "";
-                    event.target.featured.checked = false;
                 })
                 .catch((error) => {
                     console.log("Error in uploading image: ", error);
@@ -165,7 +161,6 @@ export const updateEvent = async (event: any, id: string) => {
                 description: event.target.description.value,
                 image: imageUrl,
                 id: eventId,
-                featured: event.target.featured.checked,
             });
         console.log("Data Updated Successfully");
         event.target.name.value = "";
@@ -176,6 +171,5 @@ export const updateEvent = async (event: any, id: string) => {
         event.target.phone.value = "";
         event.target.description.value = "";
         event.target.imageToUpload.value = "";
-        event.target.featured.checked = false;
     }
 };

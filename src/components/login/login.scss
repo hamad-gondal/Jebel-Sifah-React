@@ -12,9 +12,11 @@
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  box-shadow: 2px 2px 4px #00000057;
 
-  &:hover {
-    box-shadow: 2px 2px 4px #00000057;
+  .error {
+    color: red;
+    margin: auto;
   }
 }
 

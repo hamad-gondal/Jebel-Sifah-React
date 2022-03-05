@@ -1,18 +1,41 @@
 import { Suspense } from 'react'
+import { createSearchParams, useNavigate } from 'react-router-dom';
+import { deleteEvent } from '../../helper/deleteEvent';
 import './event.scss';
 
 function Event(eventList: any) {
+    const removeJsEvent = async (event: any) => {
+        const clickedEventType = event.target.dataset.type;
+        switch (clickedEventType) {
+            case 'Jebel Sifah':
+                deleteEvent(event.target.dataset.id, 'jebelSifah');
+                break;
+            case 'Havana Salalah':
+                deleteEvent(event.target.dataset.id, 'havanaSalalah');
+                break;
+            default:
+                console.log('Wrong event type');
+        }
+    };
 
+    const navigate = useNavigate();
+    const editEvent = (event: any) => {
+        navigate({
+            pathname: "/add-event",
+            search: `?${createSearchParams({
+                id: event.target.dataset.id,
+                type: event.target.dataset.type
+            })}`
+        });
+    }
     return (
         <>
             {eventList.eventList.map((item: any) => (
                 <div className='eventDetails' key={item.id}>
                     <div className='eventImage'>
-                        {
-                            <Suspense fallback={null}>
-                                <img src={item?.image} alt='event' />
-                            </Suspense>
-                        }
+                        {<Suspense fallback={null}>
+                            <img src={item?.image} alt='event' />
+                        </Suspense>}
                     </div>
                     <div className='eventText'>
                         <div className='itemText'>
@@ -49,8 +72,20 @@ function Event(eventList: any) {
                         <p className='descriptionText'>{item?.description}</p>
                     </div>
                     <div className='actionButtons'>
-                        <button className='btn'>Edit</button>
-                        <button className='btn'>Delete</button>
+                        <button
+                            onClick={removeJsEvent}
+                            data-id={item?.id}
+                            data-type={item?.location?.location}
+                            className='btn'>
+                            Delete
+                        </button>
+                        <button onClick={editEvent}
+                            data-id={item?.id}
+                            data-type={item?.location?.location === "Jebel Sifah" ? 'jebelSifah' : 'havanaSalalah'}
+                            className='btn'>
+                            Edit
+                        </button>
+
                     </div>
                 </div>
             ))

@@ -21,7 +21,7 @@ export const getSingleEvent = async (eventType: string, id: string) => {
     const querySnapshotJS = await getDocs(collection(db, eventType));
     querySnapshotJS.forEach((doc) => {
         doc.data().id = doc.id;
-        if (doc.data().id == id) {
+        if (doc.data().id === id) {
             eventsList.push(doc.data());
         }
     });

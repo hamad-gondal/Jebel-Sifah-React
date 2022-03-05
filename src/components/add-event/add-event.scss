@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  min-height: 850px;
+
+  .eventDetails {
+    box-shadow: 2px 2px 4px #00000057;
+    .pageTitle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sectionDetail {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .fieldTitle {
+        color: #747373;
+      }
+
+      .inputField {
+        margin-bottom: 15px;
+        height: 25px;
+        border-radius: 5px;
+        border: 1px solid #dbdbdb;
+      }
+
+      .dateTime {
+        height: 30px;
+      }
+
+      .descriptionField {
+        height: auto;
+      }
+
+      .fileUpload {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

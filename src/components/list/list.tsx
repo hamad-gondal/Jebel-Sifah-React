@@ -32,8 +32,6 @@ function List() {
                     {isEmpty(eventsHS[0]) ? <Loader /> : < Event eventList={eventsHS} />}
                 </div>
             </div>
-
-
         </div>
     );
 }
