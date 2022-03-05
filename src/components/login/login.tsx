@@ -23,7 +23,7 @@ function Login() {
                 window.localStorage.setItem("userDisplayName", `${user.displayName}`);
                 window.localStorage.setItem("isUserLoggedIn", "true");
                 setAuthorizing(true);
-                return navigate("/home");
+                return navigate("/");
             }
 
         } catch (error) {

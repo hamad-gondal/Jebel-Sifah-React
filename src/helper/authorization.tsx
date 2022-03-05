@@ -1,12 +1,12 @@
 import { getAuth, signOut } from "firebase/auth";
 
-export const sessionStatus = (): string => {
+export const sessionStatus = (): boolean => {
     if (window) {
         const status = window.localStorage.getItem("isUserLoggedIn");
-        return status === "true" ? "true" : "false";
+        return status === "true" ? true : false;
     }
     else {
-        return "false"
+        return false;
     }
 };
 

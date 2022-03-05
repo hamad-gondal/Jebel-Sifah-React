@@ -1,4 +1,8 @@
 .eventDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   background-color: white;
   padding: 1.5rem;
   text-align: left;
