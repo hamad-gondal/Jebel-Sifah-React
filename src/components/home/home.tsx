@@ -38,13 +38,13 @@ function Home() {
 
                     </div>
                     <div className="navLinks">
-                        <Link className='link' to="/home">Events</Link>
+                        <Link className='link' to="/">Events</Link>
                         <Link className='link' to="/add-event">Add Event</Link>
                         <Link className='link' to="/login" onClick={() => handleLogoutMethod()}>Logout</Link>
                     </div>
                 </nav>
                 <Routes>
-                    <Route path="/home" element={token ? <List /> : <Navigate to="/login" />} />
+                    <Route path="/" element={token ? <List /> : <Navigate to="/login" />} />
                     <Route path="/add-event" element={token ? <AddEvent /> : <Navigate to="/login" />} />
                     <Route path="/login" element={<Login />} />
                 </Routes>

@@ -67,6 +67,10 @@ function Event(eventList: any) {
                             <p className='detailText'>{item?.eventEnd?.time}</p>
                         </div>
                         <div className='itemText'>
+                            <p className='detailTitle'> <strong>Booking:</strong></p>
+                            <p className='detailText'>{item?.booking}</p>
+                        </div>
+                        <div className='itemText'>
                             <p className='detailTitle'> <strong>Description:</strong></p>
                         </div>
                         <p className='descriptionText'>{item?.description}</p>

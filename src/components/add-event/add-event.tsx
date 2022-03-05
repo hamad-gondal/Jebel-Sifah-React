@@ -96,6 +96,14 @@ function AddEvent() {
                         </input>
                     </div>
                     <div className="sectionDetail">
+                        <label className='fieldTitle'>Booking URL: </label>
+                        <input
+                            name="booking"
+                            className='inputField'
+                            type="text">
+                        </input>
+                    </div>
+                    <div className="sectionDetail">
                         <label className='fieldTitle'>Description: </label>
                         <textarea className='inputField descriptionField' name="description" id="description" rows={5} cols={60} >
                         </textarea>

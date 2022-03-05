@@ -49,6 +49,7 @@ export const saveEvent = async (event: any) => {
                         description: event.target.description.value,
                         image: url,
                         id: docId,
+                        booking: event.target.booking.value,
                     };
                     setDoc(doc(db, eventLocation, docId), eventDetails);
                     console.log("Data Saved Successfully");
@@ -60,6 +61,7 @@ export const saveEvent = async (event: any) => {
                     event.target.phone.value = "";
                     event.target.description.value = "";
                     event.target.imageToUpload.value = "";
+                    event.target.booking.value = "";
                 })
                 .catch((error) => {
                     console.log("Error in uploading image: ", error);
@@ -113,6 +115,7 @@ export const updateEvent = async (event: any) => {
                         description: event.target.description.value,
                         image: url,
                         id: eventId,
+                        booking: event.target.booking.value,
                     };
                     firestore.collection(eventLocation)
                         .doc(eventId)
@@ -126,6 +129,7 @@ export const updateEvent = async (event: any) => {
                     event.target.phone.value = "";
                     event.target.description.value = "";
                     event.target.imageToUpload.value = "";
+                    event.target.booking.value = "";
                 })
                 .catch((error) => {
                     console.log("Error in uploading image: ", error);
@@ -161,6 +165,7 @@ export const updateEvent = async (event: any) => {
                 description: event.target.description.value,
                 image: imageUrl,
                 id: eventId,
+                booking: event.target.booking.value,
             });
         console.log("Data Updated Successfully");
         event.target.name.value = "";
@@ -171,5 +176,6 @@ export const updateEvent = async (event: any) => {
         event.target.phone.value = "";
         event.target.description.value = "";
         event.target.imageToUpload.value = "";
+        event.target.booking.value = "";
     }
 };
