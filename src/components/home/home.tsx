@@ -44,10 +44,8 @@ function Home() {
                     </div>
                 </nav>
                 <Routes>
-                    {/* <Route path="/home" element={token ? <List /> : <Navigate to="/login" />} />
-                    <Route path="/add-event" element={token ? <AddEvent /> : <Navigate to="/login" />} /> */}
-                    <Route path="/home" element={<List />} />
-                    <Route path="/add-event" element={<AddEvent />} />
+                    <Route path="/home" element={token ? <List /> : <Navigate to="/login" />} />
+                    <Route path="/add-event" element={token ? <AddEvent /> : <Navigate to="/login" />} />
                     <Route path="/login" element={<Login />} />
                 </Routes>
                 <footer className='footer'>
