@@ -31,6 +31,7 @@ export const saveEvent = async (event: any) => {
                 });
         });
     }
+
 };
 
 export const updateEvent = async (event: any) => {
@@ -68,7 +69,6 @@ export const updateEvent = async (event: any) => {
         firestore.collection(eventLocation).doc(eventId)
             .update(eventDetails(event, imageUrl, eventId));
         console.log("Data Updated Successfully");
-        clearAllFields(event);
     }
 };
 
