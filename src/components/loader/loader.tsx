@@ -3,7 +3,10 @@ import loader from '../../assets/loader.gif'
 
 function Loader() {
     return (
-        <img className='loader' src={loader} alt='loader' />
+        <div className="loader">
+            <img src={loader} alt='loader' />
+        </div>
+
     );
 }
 
