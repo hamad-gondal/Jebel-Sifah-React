@@ -1,14 +1,15 @@
 import './login.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import initFirebase from "../../helper/firebase";
 import { useNavigate } from "react-router-dom";
+import { sessionStatus } from '../../helper/authorization';
 
 function Login() {
     initFirebase();
     const provider = new GoogleAuthProvider();
     let navigate = useNavigate();
-    const [authorizing, setAuthorizing] = useState(false);
+    const [token, setToken] = useState(sessionStatus());
     const auth = getAuth();
     const handleAuthentication = async () => {
         try {
@@ -20,22 +21,30 @@ function Login() {
 
             // for specific users
             if (user.email === "events.jebelsifah@gmail.com") {
-                window.localStorage.setItem("userDisplayName", `${user.displayName}`);
-                window.localStorage.setItem("isUserLoggedIn", "true");
-                setAuthorizing(true);
+                window.sessionStorage.setItem("userDisplayName", `${user.displayName}`);
+                window.sessionStorage.setItem("isUserLoggedIn", "true");
+                setToken(sessionStatus());
                 return navigate("/");
             }
 
         } catch (error) {
-            setAuthorizing(false);
+            setToken(false);
         }
     };
 
+    function handleRedirect() {
+        navigate("/");
+    }
+
+    useEffect(() => {
+        setToken(sessionStatus());
+    }, []);
+
     return (
         <div className="login">
-            <h1 className="title">Jebel Sifah Live Login</h1>
-            {!authorizing ? '' : setTimeout(() => { <p className="error">User Not Allowed</p> }, 3000)}
-            <button className='btn' onClick={() => handleAuthentication()}>Authenticate</button>
+            {token ? <h1 className="title">Welcome</h1> : <h1 className="title">Jebel Sifah Live Login</h1>}
+            {token ? <button className='btn' onClick={() => handleRedirect()}>Goto Dahboard</button>
+                : <button className='btn' onClick={() => handleAuthentication()}>Authenticate</button>}
         </div>
     );
 }

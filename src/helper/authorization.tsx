@@ -2,7 +2,7 @@ import { getAuth, signOut } from "firebase/auth";
 
 export const sessionStatus = (): boolean => {
     if (window) {
-        const status = window.localStorage.getItem("isUserLoggedIn");
+        const status = window.sessionStorage.getItem("isUserLoggedIn");
         return status === "true" ? true : false;
     }
     else {
@@ -16,8 +16,8 @@ export const handleLogout = async () => {
         .then(() => {
             // Sign-out successful.
             console.log("Sign-out successful");
-            window.localStorage.removeItem("isUserLoggedIn");
-            window.localStorage.removeItem("userDisplayName");
+            window.sessionStorage.removeItem("isUserLoggedIn");
+            window.sessionStorage.removeItem("userDisplayName");
         })
         .catch((error) => {
             // An error happened.

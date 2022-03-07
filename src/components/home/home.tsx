@@ -11,38 +11,32 @@ import logo from '../../assets/logo.png';
 
 function Home() {
     const [token, setToken] = React.useState(sessionStatus());
-
-    const handleLogoutMethod = async () => {
-        handleLogout();
+    const logout = async () => {
+        await handleLogout();
     };
 
     const handleLogin = async () => {
-        const token: boolean = sessionStatus();
-        setToken(token);
-        console.log('I am in Login, Status:', token);
+        setToken(sessionStatus());
     };
 
     useEffect(() => {
-        setToken(sessionStatus());
-        // console.log('Session Status:', token);
+        handleLogin();
     }, []);
 
 
     return (
         <div className='home'>
             <BrowserRouter>
-                {token ?
-                    <nav className='header'>
-                        <div className="logo">
-                            <img src={logo} alt="logo" />
-                        </div>
-                        <div className="navLinks">
-                            <Link className='link' to="/" onClick={() => handleLogin()}>Events</Link>
-                            <Link className='link' to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
-                            <Link className='link' to="/login" onClick={() => handleLogoutMethod()}>Logout</Link>
-                        </div>
-                    </nav> : <div></div>
-                }
+                <nav className='header'>
+                    <div className="logo">
+                        <Link className='link' to="/"> <img src={logo} alt="logo" /></Link>
+                    </div>
+                    <div className="navLinks">
+                        <Link className='link' to="/" onClick={() => handleLogin()}>Events</Link>
+                        <Link className='link' to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
+                        <Link className='link' to="/login" onClick={() => logout()}>Logout</Link>
+                    </div>
+                </nav>
                 <Routes>
                     <Route path="/" element={token ? <List /> : <Navigate to="/login" />} />
                     <Route path="/add-event" element={token ? <AddEvent /> : <Navigate to="/login" />} />

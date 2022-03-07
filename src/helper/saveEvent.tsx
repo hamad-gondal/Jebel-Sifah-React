@@ -22,46 +22,9 @@ export const saveEvent = async (event: any) => {
             console.log("Image Uploaded Successfully!");
             getDownloadURL(ref(storage, docId))
                 .then((url) => {
-
-                    const eventDetails = {
-                        name: event.target.name.value,
-                        location: {
-                            location: event.target.location.value,
-                            venue: event.target.venue.value,
-                            latitude:
-                                event.target.location.value === "Jebel Sifah"
-                                    ? "23.4117"
-                                    : "17.0334",
-                            longitude:
-                                event.target.location.value === "Jebel Sifah"
-                                    ? "58.7875"
-                                    : "54.3003",
-                        },
-                        eventStart: {
-                            time: event.target.startTime.value,
-                            date: moment(event.target.startDate.value).format('ll'),
-                        },
-                        eventEnd: {
-                            time: event.target.endTime.value,
-                            date: '',
-                        },
-                        phone: event.target.phone.value,
-                        description: event.target.description.value,
-                        image: url,
-                        id: docId,
-                        booking: event.target.booking.value,
-                    };
-                    setDoc(doc(db, eventLocation, docId), eventDetails);
+                    setDoc(doc(db, eventLocation, docId), eventDetails(event, url, docId));
                     console.log("Data Saved Successfully");
-                    event.target.name.value = "";
-                    event.target.venue.value = "";
-                    event.target.startDate.value = "";
-                    event.target.startTime.value = "";
-                    event.target.endTime.value = "";
-                    event.target.phone.value = "";
-                    event.target.description.value = "";
-                    event.target.imageToUpload.value = "";
-                    event.target.booking.value = "";
+                    clearAllFields(event);
                 })
                 .catch((error) => {
                     console.log("Error in uploading image: ", error);
@@ -88,48 +51,12 @@ export const updateEvent = async (event: any) => {
             console.log("Image Uploaded Successfully!");
             getDownloadURL(ref(storage, docId))
                 .then((url) => {
-
-                    const eventDetails = {
-                        name: event.target.name.value,
-                        location: {
-                            location: event.target.location.value,
-                            venue: event.target.venue.value,
-                            latitude:
-                                event.target.location.value === "Jebel Sifah"
-                                    ? "23.4117"
-                                    : "17.0334",
-                            longitude:
-                                event.target.location.value === "Jebel Sifah"
-                                    ? "58.7875"
-                                    : "54.3003",
-                        },
-                        eventStart: {
-                            time: event.target.startTime.value,
-                            date: moment(event.target.startDate.value).format('ll'),
-                        },
-                        eventEnd: {
-                            time: event.target.endTime.value,
-                            date: '',
-                        },
-                        phone: event.target.phone.value,
-                        description: event.target.description.value,
-                        image: url,
-                        id: eventId,
-                        booking: event.target.booking.value,
-                    };
+                    eventDetails(event, url, docId);
                     firestore.collection(eventLocation)
                         .doc(eventId)
-                        .update(eventDetails);
+                        .update(eventDetails(event, url, docId));
                     console.log("Data Saved Successfully");
-                    event.target.name.value = "";
-                    event.target.venue.value = "";
-                    event.target.startDate.value = "";
-                    event.target.startTime.value = "";
-                    event.target.endTime.value = "";
-                    event.target.phone.value = "";
-                    event.target.description.value = "";
-                    event.target.imageToUpload.value = "";
-                    event.target.booking.value = "";
+                    clearAllFields(event);
                 })
                 .catch((error) => {
                     console.log("Error in uploading image: ", error);
@@ -139,43 +66,51 @@ export const updateEvent = async (event: any) => {
 
     if (!file) {
         firestore.collection(eventLocation).doc(eventId)
-            .update({
-                name: event.target.name.value,
-                location: {
-                    location: event.target.location.value,
-                    venue: event.target.venue.value,
-                    latitude:
-                        event.target.location.value === "Jebel Sifah"
-                            ? "23.4117"
-                            : "17.0334",
-                    longitude:
-                        event.target.location.value === "Jebel Sifah"
-                            ? "58.7875"
-                            : "54.3003",
-                },
-                eventStart: {
-                    time: event.target.startTime.value,
-                    date: moment(event.target.startDate.value).format('ll'),
-                },
-                eventEnd: {
-                    time: event.target.endTime.value,
-                    date: '',
-                },
-                phone: event.target.phone.value,
-                description: event.target.description.value,
-                image: imageUrl,
-                id: eventId,
-                booking: event.target.booking.value,
-            });
+            .update(eventDetails(event, imageUrl, eventId));
         console.log("Data Updated Successfully");
-        event.target.name.value = "";
-        event.target.venue.value = "";
-        event.target.startDate.value = "";
-        event.target.startTime.value = "";
-        event.target.endTime.value = "";
-        event.target.phone.value = "";
-        event.target.description.value = "";
-        event.target.imageToUpload.value = "";
-        event.target.booking.value = "";
+        clearAllFields(event);
+    }
+};
+
+export const clearAllFields = (event: any): void => {
+    event.target.name.value = "";
+    event.target.venue.value = "";
+    event.target.startDate.value = "";
+    event.target.startTime.value = "";
+    event.target.endTime.value = "";
+    event.target.phone.value = "";
+    event.target.description.value = "";
+    event.target.imageToUpload.value = "";
+    event.target.booking.value = "";
+};
+
+export const eventDetails = (event: any, url?: string, docId?: string): any => {
+    return {
+        name: event.target.name.value,
+        location: {
+            location: event.target.location.value,
+            venue: event.target.venue.value,
+            latitude:
+                event.target.location.value === "Jebel Sifah"
+                    ? "23.4117"
+                    : "17.0334",
+            longitude:
+                event.target.location.value === "Jebel Sifah"
+                    ? "58.7875"
+                    : "54.3003",
+        },
+        eventStart: {
+            time: event.target.startTime.value,
+            date: moment(event.target.startDate.value).format('ll'),
+        },
+        eventEnd: {
+            time: event.target.endTime.value,
+            date: '',
+        },
+        phone: event.target.phone.value,
+        description: event.target.description.value,
+        image: url,
+        id: docId,
+        booking: event.target.booking.value,
     }
 };
