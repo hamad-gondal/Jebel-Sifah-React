@@ -11,6 +11,7 @@ import logo from '../../assets/logo.png';
 
 function Home() {
     const [token, setToken] = React.useState(sessionStatus());
+    const [activeClass, setActiveClass] = React.useState('');
     const location = useLocation();
 
     const logout = async () => {
@@ -19,10 +20,12 @@ function Home() {
 
     const handleLogin = async () => {
         setToken(sessionStatus());
+        setActiveClass(location.pathname)
     };
 
     useEffect(() => {
         handleLogin();
+
     }, [location.pathname]);
 
     return (
@@ -32,9 +35,12 @@ function Home() {
                     <Link className='link' to="/"> <img src={logo} alt="logo" /></Link>
                 </div>
                 <div className="navLinks">
-                    <Link className='link' to="/" onClick={() => handleLogin()}>Events</Link>
-                    <Link className='link' to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
-                    <Link className='link' to="/login" onClick={() => logout()}>Logout</Link>
+                    <Link className={activeClass === '/' ? 'link active' : 'link'} to="/" onClick={() => handleLogin()}>Events</Link>
+                    <Link className={activeClass === '/add-event' ? 'link active' : 'link'} to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
+                    <Link className={activeClass === '/login' ? 'link active' : 'link'} to="/login" onClick={() => logout()}>Logout</Link>
+                    {/* <Link className={location.pathname === '/' ? 'link active' : 'link'} to="/" onClick={() => handleLogin()}>Events</Link>
+                    <Link className={location.pathname === '/add-event' ? 'link' : 'link active'} to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
+                    <Link className={location.pathname === '/login' ? 'link active' : 'link'} to="/login" onClick={() => logout()}>Logout</Link> */}
                 </div>
             </nav>
             <Routes>

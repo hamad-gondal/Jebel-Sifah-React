@@ -24,7 +24,7 @@ function AddEvent() {
     const saveEventDetails = async (event: any) => {
         if (id) {
             await updateEvent(event);
-            notify('Event updated successfully');
+            notify('Event details updated successfully');
         }
         else {
             await saveEvent(event);
