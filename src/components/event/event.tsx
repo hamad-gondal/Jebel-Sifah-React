@@ -2,30 +2,21 @@ import { Suspense } from 'react'
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { deleteEvent } from '../../helper/deleteEvent';
 import './event.scss';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Img } from 'react-image'
+import placeholder from '../../assets/placeholder-grey.jpg'
 
-function Event(eventList: any) {
-    const notify = () => toast.success('Event deleted successfully', {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
-
+function Event(eventList: any, setText: any) {
     const removeJsEvent = async (event: any) => {
         const clickedEventType = event.target.dataset.type;
+
         switch (clickedEventType) {
             case 'Jebel Sifah':
                 deleteEvent(event.target.dataset.id, 'jebelSifah');
-                notify();
                 break;
             case 'Havana Salalah':
                 deleteEvent(event.target.dataset.id, 'havanaSalalah');
-                notify();
                 break;
             default:
                 console.log('Wrong event type');
@@ -57,8 +48,8 @@ function Event(eventList: any) {
             {eventList.eventList.map((item: any) => (
                 <div className='eventDetails' key={item.id}>
                     <div className='eventImage'>
-                        {<Suspense fallback={null}>
-                            <img src={item?.image} alt='event' />
+                        {<Suspense fallback={placeholder}>
+                            <Img src={item?.image} loader={<img src={placeholder} alt='event' />} />
                         </Suspense>}
                     </div>
                     <div className='eventText'>

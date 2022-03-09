@@ -5,6 +5,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import moment from 'moment';
 import ImageTools from '../helper/ImageTools';
 import firebase from 'firebase/compat/app';
+import { toast } from "react-toastify";
 
 export const saveEvent = async (event: any) => {
 
@@ -18,12 +19,13 @@ export const saveEvent = async (event: any) => {
         const storage = getStorage();
         const storageRef = ref(storage, docId);
         const eventLocation = event.target.location.value === "Jebel Sifah" ? "jebelSifah" : "havanaSalalah";
-        uploadBytes(storageRef, await reSizedImage).then((snapshot) => {
+        uploadBytes(storageRef, await reSizedImage).then(() => {
             console.log("Image Uploaded Successfully!");
             getDownloadURL(ref(storage, docId))
                 .then((url) => {
                     setDoc(doc(db, eventLocation, docId), eventDetails(event, url, docId));
                     console.log("Data Saved Successfully");
+                    notify('Event added successfully');
                     clearAllFields(event);
                 })
                 .catch((error) => {
@@ -31,7 +33,6 @@ export const saveEvent = async (event: any) => {
                 });
         });
     }
-
 };
 
 export const updateEvent = async (event: any) => {
@@ -48,7 +49,7 @@ export const updateEvent = async (event: any) => {
         const docId = uuidv4();
         const storage = getStorage();
         const storageRef = ref(storage, docId);
-        uploadBytes(storageRef, await reSizedImage).then((snapshot) => {
+        uploadBytes(storageRef, await reSizedImage).then(() => {
             console.log("Image Uploaded Successfully!");
             getDownloadURL(ref(storage, docId))
                 .then((url) => {
@@ -57,7 +58,7 @@ export const updateEvent = async (event: any) => {
                         .doc(eventId)
                         .update(eventDetails(event, url, docId));
                     console.log("Data Saved Successfully");
-                    clearAllFields(event);
+                    notify('Event details updated successfully');
                 })
                 .catch((error) => {
                     console.log("Error in uploading image: ", error);
@@ -69,7 +70,9 @@ export const updateEvent = async (event: any) => {
         firestore.collection(eventLocation).doc(eventId)
             .update(eventDetails(event, imageUrl, eventId));
         console.log("Data Updated Successfully");
+        notify('Event details updated successfully');
     }
+
 };
 
 export const clearAllFields = (event: any): void => {
@@ -83,6 +86,16 @@ export const clearAllFields = (event: any): void => {
     event.target.imageToUpload.value = "";
     event.target.booking.value = "";
 };
+
+export const notify = (eventText: string) => toast.success(eventText, {
+    position: "bottom-left",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+});
 
 export const eventDetails = (event: any, url?: string, docId?: string): any => {
     return {

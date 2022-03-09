@@ -1,40 +1,28 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { saveEvent, updateEvent } from '../../helper/saveEvent';
 import './add-event.scss';
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { getSingleEvent } from '../../helper/getEvents';
 import { setFormValue } from '../../helper/setFormValues';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 function AddEvent() {
     let query = useQuery();
-    let id: string = '';
-    let type: string = '';
-    const notify = (eventText: string) => toast.success(eventText, {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-    });
+    const location = useLocation();
+    let eventId: string = query.get("id") || '';
+    let eventType: string = query.get("type") || '';
 
     const saveEventDetails = async (event: any) => {
-        if (id) {
-            await updateEvent(event);
-            notify('Event details updated successfully');
-        }
-        else {
-            await saveEvent(event);
-            notify('Event added successfully');
-        }
+        eventId ? await updateEvent(event) : await saveEvent(event);
     };
 
     const editEvents = async () => {
-        const eventDetails: any = await getSingleEvent(type as string, id as string);
-        setFormValue(eventDetails);
+        if (eventId) {
+            const eventDetails: any = await getSingleEvent(eventType, eventId);
+            setFormValue(eventDetails);
+        }
     }
 
     function useQuery() {
@@ -43,14 +31,10 @@ function AddEvent() {
     }
 
     useEffect(() => {
-        if (query.get("id")) {
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            id = query.get("id") as string;
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-            type = query.get("type") as string;
+        if (eventId) {
             editEvents();
         }
-    }, []);
+    }, [location.pathname]);
 
     return (
         <div className="wrapper">

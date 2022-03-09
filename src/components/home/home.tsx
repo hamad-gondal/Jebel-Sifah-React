@@ -38,9 +38,6 @@ function Home() {
                     <Link className={activeClass === '/' ? 'link active' : 'link'} to="/" onClick={() => handleLogin()}>Events</Link>
                     <Link className={activeClass === '/add-event' ? 'link active' : 'link'} to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
                     <Link className={activeClass === '/login' ? 'link active' : 'link'} to="/login" onClick={() => logout()}>Logout</Link>
-                    {/* <Link className={location.pathname === '/' ? 'link active' : 'link'} to="/" onClick={() => handleLogin()}>Events</Link>
-                    <Link className={location.pathname === '/add-event' ? 'link' : 'link active'} to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
-                    <Link className={location.pathname === '/login' ? 'link active' : 'link'} to="/login" onClick={() => logout()}>Logout</Link> */}
                 </div>
             </nav>
             <Routes>
