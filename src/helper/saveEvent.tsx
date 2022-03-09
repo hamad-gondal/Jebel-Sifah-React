@@ -72,7 +72,6 @@ export const updateEvent = async (event: any) => {
         console.log("Data Updated Successfully");
         notify('Event details updated successfully');
     }
-
 };
 
 export const clearAllFields = (event: any): void => {
@@ -88,7 +87,7 @@ export const clearAllFields = (event: any): void => {
 };
 
 export const notify = (eventText: string) => toast.success(eventText, {
-    position: "bottom-left",
+    position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,

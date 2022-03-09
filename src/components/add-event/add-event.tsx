@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { saveEvent, updateEvent } from '../../helper/saveEvent';
 import './add-event.scss';
-import { BrowserRouter as Router, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { getSingleEvent } from '../../helper/getEvents';
 import { setFormValue } from '../../helper/setFormValues';
 import { ToastContainer } from 'react-toastify';
@@ -15,7 +15,7 @@ function AddEvent() {
     let eventType: string = query.get("type") || '';
 
     const saveEventDetails = async (event: any) => {
-        eventId ? await updateEvent(event) : await saveEvent(event);
+        eventId ? updateEvent(event) : await saveEvent(event);
     };
 
     const editEvents = async () => {

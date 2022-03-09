@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Img } from 'react-image'
 import placeholder from '../../assets/placeholder-grey.jpg'
 
-function Event(eventList: any, setText: any) {
+function Event(eventList: any) {
     const removeJsEvent = async (event: any) => {
         const clickedEventType = event.target.dataset.type;
 

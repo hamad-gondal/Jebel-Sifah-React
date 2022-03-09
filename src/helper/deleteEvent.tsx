@@ -7,7 +7,7 @@ import initFirebase from "../helper/firebase";
 initFirebase();
 const db = getFirestore();
 const notify = () => toast.success('Event deleted successfully', {
-    position: "bottom-left",
+    position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -24,10 +24,10 @@ export const deleteEvent = async (eventId: string, eventType: string) => {
         const desertRef = ref(storage, eventId);
         // Delete the file
         deleteObject(desertRef).then(() => {
-            window.location.reload();
             // File deleted successfully
             console.log("Event Deleted");
             notify();
+            setTimeout(() => window.location.reload(), 1000);
         }).catch((error) => {
             // Uh-oh, an error occurred!
             console.log(error);
