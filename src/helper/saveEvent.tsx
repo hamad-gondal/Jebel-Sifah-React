@@ -25,7 +25,7 @@ export const saveEvent = async (event: any) => {
                 .then((url) => {
                     setDoc(doc(db, eventLocation, docId), eventDetails(event, url, docId));
                     console.log("Data Saved Successfully");
-                    notify('Event added successfully');
+                    notify('Added Successfully');
                     clearAllFields(event);
                 })
                 .catch((error) => {
@@ -58,7 +58,7 @@ export const updateEvent = async (event: any) => {
                         .doc(eventId)
                         .update(eventDetails(event, url, docId));
                     console.log("Data Saved Successfully");
-                    notify('Event details updated successfully');
+                    notify('Updated successfully');
                 })
                 .catch((error) => {
                     console.log("Error in uploading image: ", error);
@@ -70,7 +70,7 @@ export const updateEvent = async (event: any) => {
         firestore.collection(eventLocation).doc(eventId)
             .update(eventDetails(event, imageUrl, eventId));
         console.log("Data Updated Successfully");
-        notify('Event details updated successfully');
+        notify('Updated Successfully');
     }
 };
 

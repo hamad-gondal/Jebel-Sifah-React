@@ -16,7 +16,9 @@ function Home() {
     const location = useLocation();
 
     const logout = async () => {
+        setToken(false);
         await handleLogout();
+        console.log(token);
     };
 
     const handleLogin = async () => {
@@ -26,21 +28,21 @@ function Home() {
 
     useEffect(() => {
         handleLogin();
-
     }, [location.pathname]);
 
     return (
         <div className='home'>
-            <nav className='header'>
-                <div className="logo">
-                    <Link className='link' to="/"> <img src={logo} alt="logo" /></Link>
-                </div>
-                <div className="navLinks">
-                    <Link className={activeClass === '/' ? 'link active' : 'link'} to="/" onClick={() => handleLogin()}>Events</Link>
-                    <Link className={activeClass === '/add-event' ? 'link active' : 'link'} to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
-                    <Link className={activeClass === '/login' ? 'link active' : 'link'} to="/login" onClick={() => logout()}>Logout</Link>
-                </div>
-            </nav>
+            {token &&
+                <nav className='header'>
+                    <div className="logo">
+                        <Link className='link' to="/"> <img src={logo} alt="logo" /></Link>
+                    </div>
+                    <div className="navLinks">
+                        <Link className={activeClass === '/' ? 'link active' : 'link'} to="/" onClick={() => handleLogin()}>Events</Link>
+                        <Link className={activeClass === '/add-event' ? 'link active' : 'link'} to="/add-event" onClick={() => handleLogin()}>Add Event</Link>
+                        <Link className={activeClass === '/login' ? 'link active' : 'link'} to="/login" onClick={() => logout()}>Logout</Link>
+                    </div>
+                </nav>}
             <Routes>
                 <Route path="/" element={sessionStatus() ? <List /> : <Navigate to="/login" />} />
                 <Route path="/add-event" element={sessionStatus() ? <AddEvent /> : <Navigate to="/login" />} />

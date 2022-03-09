@@ -6,7 +6,7 @@ import initFirebase from "../helper/firebase";
 
 initFirebase();
 const db = getFirestore();
-const notify = () => toast.success('Event deleted successfully', {
+const notify = () => toast.success('Deleted Successfully', {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
