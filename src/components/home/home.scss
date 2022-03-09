@@ -1,3 +1,5 @@
+@import "../../styles/variable.scss";
+
 .home {
   flex-grow: 1;
   display: flex;
@@ -9,6 +11,6 @@
 }
 
 .active {
-  color: #e8903e !important;
+  color: $primary-color !important;
   font-weight: 700;
 }

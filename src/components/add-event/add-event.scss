@@ -1,3 +1,5 @@
+@import "../../styles/variable.scss";
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@
   min-height: 850px;
 
   .eventDetails {
-    box-shadow: 2px 2px 4px #00000057;
+    box-shadow: 2px 2px 4px $black;
     .pageTitle {
       display: flex;
       flex-direction: column;
@@ -19,20 +21,20 @@
       justify-content: flex-start;
 
       .fieldTitle {
-        color: #747373;
+        color: $grey-20;
       }
 
       .inputField {
         margin-bottom: 15px;
         height: 25px;
         border-radius: 5px;
-        border: 1px solid #dbdbdb;
+        border: 1px solid $grey-10;
       }
 
       .dateTime {
         height: 30px;
         width: 100%;
-        background-color: white;
+        background-color: $white;
       }
 
       .descriptionField {

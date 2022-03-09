@@ -1,14 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
+@import "./styles//variable.scss";
 
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: Nunito;
-}
-
-p {
-  // color: #777;
 }
 
 h1 {
@@ -24,7 +21,7 @@ h1 {
 .app {
   display: flex;
   flex-direction: column;
-  background-color: #f2f2f2;
+  background-color: $app-background;
   min-height: 100vh;
   padding: 0 50px;
 }
@@ -35,7 +32,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   margin-top: 20px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid $grey-10;
 
   .logo {
     img {
@@ -49,21 +46,21 @@ h1 {
     align-items: center;
 
     .link {
-      color: #747373;
+      color: $grey-20;
       margin-left: 10px;
       text-decoration: none;
 
       &:hover {
-        color: #e8903e;
+        color: $primary-color;
       }
     }
   }
 }
 
 .footer {
-  color: #747373;
+  color: $grey-20;
   padding: 20px 0;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid $grey-10;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
