@@ -23,7 +23,11 @@ h1 {
   flex-direction: column;
   background-color: $app-background;
   min-height: 100vh;
-  padding: 0 50px;
+  padding: 0 5px;
+
+  @media (min-width: $medium-screen) {
+    padding: 0 50px;
+  }
 }
 
 .header {
