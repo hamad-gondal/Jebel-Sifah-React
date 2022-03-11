@@ -35,6 +35,19 @@
         color: $grey-20;
         min-width: 130px;
         word-wrap: break-word;
+
+        .bookingLink {
+          text-decoration: none;
+          color: $grey-20;
+          display: inline-block;
+          width: 250px;
+          white-space: nowrap;
+          overflow: hidden !important;
+          text-overflow: ellipsis;
+          &:hover {
+            color: $secondary-color;
+          }
+        }
       }
     }
 
@@ -70,6 +83,7 @@
     .btn:hover {
       background-color: $secondary-color;
       border-color: $secondary-color;
+      transition: 0.5s;
     }
   }
 
@@ -86,6 +100,7 @@
 
   &:hover {
     box-shadow: 2px 2px 4px $black;
+    transition: 0.5s;
   }
 }
 

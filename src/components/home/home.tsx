@@ -18,7 +18,6 @@ function Home() {
     const logout = async () => {
         setToken(false);
         await handleLogout();
-        console.log(token);
     };
 
     const handleLogin = async () => {
@@ -38,9 +37,9 @@ function Home() {
                         <Link className='link' to="/"> <img src={logo} alt="logo" /></Link>
                     </div>
                     <div className="navLinks">
-                        <Link className={activeClass === '/' ? 'link active' : 'link'} to="/" onClick={() => handleLogin()}>Events</Link>
-                        <Link className={activeClass === '/add-event' ? 'link active' : 'link'} to="/add-event" onClick={() => handleLogin()}>Add</Link>
-                        <Link className={activeClass === '/login' ? 'link active' : 'link'} to="/login" onClick={() => logout()}>Logout</Link>
+                        <Link className={activeClass === '/' ? 'link active' : 'link'} to="/" onClick={() => handleLogin()}>EVENTS</Link>
+                        <Link className={activeClass === '/add-event' ? 'link active' : 'link'} to="/add-event" onClick={() => handleLogin()}>ADD</Link>
+                        <Link className={activeClass === '/login' ? 'link active' : 'link'} to="/login" onClick={() => logout()}>LOGOUT</Link>
                     </div>
                 </nav>}
             <Routes>

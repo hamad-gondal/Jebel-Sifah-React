@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { createSearchParams, Link, useNavigate } from 'react-router-dom';
 import { deleteEvent } from '../../helper/deleteEvent';
 import './event.scss';
 import { ToastContainer } from 'react-toastify';
@@ -83,7 +83,15 @@ function Event(eventList: any) {
                         </div>
                         <div className='itemText'>
                             <p className='detailTitle'> <strong>Booking:</strong></p>
-                            <p className='detailText'>{item?.booking}</p>
+                            <p className='detailText'>
+                                <a className='bookingLink'
+                                    href={item?.booking}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    title={item?.booking}>
+                                    {item?.booking}
+                                </a>
+                            </p>
                         </div>
                         <div className='itemText'>
                             <p className='detailTitle'> <strong>Description:</strong></p>

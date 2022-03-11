@@ -21,13 +21,13 @@ function List() {
     return (
         <div className='content'>
             <div className="jebelSifah">
-                <h1 className="title">Jebel Sifah Events</h1>
+                <h1 className="title">JEBEL SIFAH EVENTS</h1>
                 <div className='events'>
                     {isEmpty(eventsJS[0]) ? <Loader /> : < Event eventList={eventsJS} />}
                 </div>
             </div>
             <div className="havanaSalalah">
-                <h1 className="title">Havana Salalah Events</h1>
+                <h1 className="title">HAVANA SALALAH EVENTS</h1>
                 <div className='events'>
                     {isEmpty(eventsHS[0]) ? <Loader /> : < Event eventList={eventsHS} />}
                 </div>

@@ -51,7 +51,7 @@ function AddEvent() {
             />
             <div className="eventDetails">
                 <form id="eventDetailsForm" onSubmit={saveEventDetails}>
-                    <h1 className='pageTitle'>Event Details</h1>
+                    <h1 className='pageTitle'>EVENT DETAILS</h1>
                     <div className="sectionDetail">
                         <label className='fieldTitle'>Title: </label>
                         <input
