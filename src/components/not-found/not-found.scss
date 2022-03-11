@@ -1,3 +1,5 @@
+@import "../../styles/variable.scss";
+
 .notFound {
   display: flex;
   flex-grow: 1;
@@ -5,8 +7,8 @@
   justify-content: center;
   align-items: center;
 
-  img {
-    width: 300px;
+  .lost {
+    color: $grey-20;
   }
 
   .link {

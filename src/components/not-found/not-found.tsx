@@ -7,7 +7,7 @@ function NotFound() {
     return (
         <div className="notFound">
             <Lottie animationData={notFound} />
-            {/* <p>Looks like you are lost :(</p> */}
+            <p className='lost'>Looks like you are lost :(</p>
             <Link className='link btn' to="/">Return Home</Link>
         </div>
 
