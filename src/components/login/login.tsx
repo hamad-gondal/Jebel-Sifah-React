@@ -38,8 +38,8 @@ function Login() {
 
     return (
         <div className="login">
-            <h1 className="title">JEBEL SIFAH LIVE</h1>
             <div className="animation">{View}</div>
+            <h1 className="title">JEBEL SIFAH LIVE</h1>
             <button className='btn' onClick={() => handleAuthentication()}>Authenticate</button>
         </div>
     );
