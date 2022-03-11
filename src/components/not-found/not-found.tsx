@@ -14,7 +14,7 @@ function NotFound() {
     return (
         <div className="notFound">
             <div className="animation">{View} </div>
-            <p className='lost'>Looks like you are lost :(</p>
+            <h1 className='lost'>Looks like you are lost :(</h1>
             <Link className='link btn' to="/">Return Home</Link>
         </div>
 
