@@ -1,10 +1,18 @@
 import './loader.scss';
-import loader from '../../assets/loader.gif'
+import loader from '../../assets/loader.json'
+import { useLottie } from "lottie-react";
 
 function Loader() {
+    const options = {
+        animationData: loader,
+        loop: true,
+        autoplay: true
+    };
+    const { View } = useLottie(options);
+
     return (
         <div className="loader">
-            <img src={loader} alt='loader' />
+            {View}
         </div>
 
     );

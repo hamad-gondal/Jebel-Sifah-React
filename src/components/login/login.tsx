@@ -2,8 +2,16 @@ import './login.scss';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import initFirebase from "../../helper/firebase";
 import { useNavigate } from "react-router-dom";
+import event from "../../assets/event.json";
+import { useLottie } from "lottie-react";
 
 function Login() {
+    const options = {
+        animationData: event,
+        loop: true,
+        autoplay: true
+    };
+    const { View } = useLottie(options);
     initFirebase();
     const provider = new GoogleAuthProvider();
     let navigate = useNavigate();
@@ -30,7 +38,8 @@ function Login() {
 
     return (
         <div className="login">
-            <h1 className="title">Jebel Sifah Live Login</h1>
+            <h1 className="title">JEBEL SIFAH LIVE</h1>
+            <div className="animation">{View}</div>
             <button className='btn' onClick={() => handleAuthentication()}>Authenticate</button>
         </div>
     );
