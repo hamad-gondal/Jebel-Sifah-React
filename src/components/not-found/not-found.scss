@@ -9,12 +9,13 @@
 
   .animation {
     svg {
-      height: 330px !important;
+      height: auto;
     }
   }
 
   .lost {
     color: $grey-20;
+    font-size: 1.8em;
   }
 
   .link {
@@ -24,5 +25,21 @@
   .btn {
     height: auto;
     margin: 0;
+  }
+
+  @media (min-width: $medium-screen) {
+    margin-top: -200px;
+
+    .animation {
+      height: 330px !important;
+
+      svg {
+        height: 330px !important;
+      }
+    }
+
+    .lost {
+      font-size: 2em;
+    }
   }
 }
