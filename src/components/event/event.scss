@@ -4,18 +4,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
+  box-sizing: border-box;
   background-color: $white;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
-  margin: 10px;
-  width: 310px;
+  margin-bottom: 20px;
+  width: 100%;
   border-radius: 40px;
 
   @media (min-width: $medium-screen) {
     width: 415px;
+    margin: 10px;
   }
 
   .eventText {
